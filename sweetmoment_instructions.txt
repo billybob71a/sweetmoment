@@ -233,7 +233,7 @@ server {
         }
 }
 
-
+Now I needed to install Wordpress
 Download the latest from wordpress website into some tmp location
 
 curl -LO https://wordpress.org/latest.tar.gz
@@ -262,8 +262,8 @@ define('SECURE_AUTH_SALT', 'blahblahblah');
 define('LOGGED_IN_SALT',   'blahblahblah');
 define('NONCE_SALT',       'blahblahblah');
 
-
-the final /etc/nginx/sites-available/sweetmoment.ca file is like this:
+However, I ran into problem where it kept trying to download index.php instead of executing it as a php script
+Finally fixed the issue by deleting browser cache and the final /etc/nginx/sites-available/sweetmoment.ca file is like this:
 server {
         listen 443 ssl default_server;
         listen [::]:443 ssl default_server;
@@ -333,7 +333,5 @@ I am not sure if the following had anything to do with it, but I did modify the 
 
 date.timezone = America/Chicago
 cgi.fix_pathinfo=0
-
-Remember to clear your cache on the browser if you had previously visited the sweetmoment.ca site
 date.timezone = America/Chicago
 
