@@ -335,3 +335,20 @@ date.timezone = America/Chicago
 cgi.fix_pathinfo=0
 date.timezone = America/Chicago
 
+-------------------------------------
+
+Found a problem in that the wordpress theme previews were not working.
+The spinner icon just shows up and if we check with F12 developer tools, we can see that it blocked non-https content. The main page was served over https, but if there was frame that has http, the Chrome browser will block it.
+
+
+Mixed Content: The page at 'https://sweetmoment.ca/wp-admin/theme-install.php' was loaded over HTTPS, but requested an insecure script 'http://sweetmoment.ca/wp-includes/js/wp-emoji-release.min.js?ver=5.7.1'. This request has been blocked; the content must be served over HTTPS
+
+
+This site below provided information on how to fix it:
+
+https://www.siteground.com/kb/fix-error-many-redirects-wordpress-site/?gclid=CjwKCAjwnPOEBhA0EiwA609ReTGLnqjzRzq13hfcie7n5MW7N9D2gDTPA5TERUXrpUBD3jsbBOV9QRoCYXcQAvD_BwE
+
+The issue was that my cloudflare setting for SSL was to "Flexible".
+
+If I had set my "Settings" > "General" > "Home" and "Site URL" to https: then I need to set my cloudflare ssl settings to "Full"
+ 
